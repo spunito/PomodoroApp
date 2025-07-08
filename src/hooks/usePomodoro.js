@@ -11,8 +11,8 @@ const durations ={
 
 
 export const usePomodoro = () => {
-    useContext(PomodoroContext);
-    const [mode, setMode] = useState("pomodoro")
+
+    const {mode , setMode} = useContext(PomodoroContext);
     const [timer, setTimer] = useState(durations[mode])
     const [playSound] = useSound(check)
     const [isRunning, setIsRunning] = useState(false)
