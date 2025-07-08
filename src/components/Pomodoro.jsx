@@ -7,7 +7,7 @@ export const Pomodoro = () => {
     const minutos = Math.floor(timer/60)
     const segundos = timer % 60
     const txtMinutos = minutos.toString().padStart(2, '0')+ ":" + segundos.toString().padStart(2, '0')
-  
+    console.log(mode)
     return (
 
     <div className={`${mode ==="pomodoro" ? 'bg-[rgb(186,73,73)]' : mode === "short"  ? "bg-[#38858a]"  : mode === "long"  ? "bg-[#397097]" :'' }
@@ -15,10 +15,10 @@ export const Pomodoro = () => {
         
           <div className={`${mode ==="pomodoro" ? 'bg-[#C55454]' : mode === "short"  ? "bg-[#4B9A9C]"  : mode === "long"  ? "bg-[#4B7A9C]" :'' } p-15  rounded-lg `}>
             
-            <div className='flex justify-top gap-4 mb-4 text-white'>
-                <button className='rounded px-4 py-1 cursor-pointer'  onClick={() => changeMode("pomodoro")}>Pomodoro</button>
-                <button className='rounded px-4 py-1 cursor-pointer'  onClick={() => changeMode("short")}>Short Break</button>
-                <button className='rounded px-4 py-1 cursor-pointer'  onClick={() => changeMode("long")}>Long Break</button>
+            <div className='flex justify-top gap-4 mb-4 text-white' >
+                <button className={`rounded px-4 py-1 cursor-pointer ${mode === "pomodoro" ? 'bg-[#A34444] ' : ''}`}  onClick={() => changeMode("pomodoro")}>Pomodoro</button>
+                <button className={`rounded px-4 py-1 cursor-pointer ${mode === "short" ? 'bg-[#3A7D7E]' : ''}`}  onClick={() => changeMode("short")}>Short Break</button>
+                <button className={`rounded px-4 py-1 cursor-pointer ${mode === "long" ? 'bg-[#3B627E]' : ''}`}  onClick={() => changeMode("long")}>Long Break</button>
             </div>
 
             <p className="text-center text-9xl text-white pb-6">{txtMinutos}</p>
