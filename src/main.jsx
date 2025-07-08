@@ -1,7 +1,8 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import { PomodoroApp } from './pomodoro/PomodoroApp'
+import { PomodoroApp } from './PomodoroApp'
+
 
 
 createRoot(document.getElementById('root')).render(
