@@ -3,29 +3,30 @@ import { usePomodoro } from '../hooks/usePomodoro'
 
 export const Pomodoro = () => {
 
-    const {timer, isRunning , handleReset , handleRunning, handleNotRunning , changeMode} = usePomodoro()
+    const {timer, isRunning , handleReset ,mode, handleRunning, handleNotRunning , changeMode} = usePomodoro()
     const minutos = Math.floor(timer/60)
     const segundos = timer % 60
     const txtMinutos = minutos.toString().padStart(2, '0')+ ":" + segundos.toString().padStart(2, '0')
   
     return (
 
-    <div className='bg-[rgb(186,73,73)] w-full h-screen flex flex-col items-center justify-center font-mono'>
-        <h1 className="text-white text-4xl font-medium pb-6">PomodoroApp</h1>
-          <div className="p-15 bg-[#C55454] rounded-lg ">
+    <div className={`${mode ==="pomodoro" ? 'bg-[rgb(186,73,73)]' : mode === "short"  ? "bg-[#38858a]"  : mode === "long"  ? "bg-[#397097]" :'' }
+     "w-full h-screen flex flex-col items-center justify-center font-mono`}>
+        
+          <div className={`${mode ==="pomodoro" ? 'bg-[#C55454]' : mode === "short"  ? "bg-[#4B9A9C]"  : mode === "long"  ? "bg-[#4B7A9C]" :'' } p-15  rounded-lg `}>
             
-            <div className='flex justify-top gap-4 mb-4'>
-                <button className=' rounded px-4 py-1 cursor-pointer'  onClick={() => changeMode("pomodoro")}>Pomodoro</button>
-                <button className=' rounded px-4 py-1 cursor-pointer'  onClick={() => changeMode("short")}>Short Break</button>
-                <button className=' rounded px-4 py-1 cursor-pointer'  onClick={() => changeMode("long")}>Long Break</button>
+            <div className='flex justify-top gap-4 mb-4 text-white'>
+                <button className='rounded px-4 py-1 cursor-pointer'  onClick={() => changeMode("pomodoro")}>Pomodoro</button>
+                <button className='rounded px-4 py-1 cursor-pointer'  onClick={() => changeMode("short")}>Short Break</button>
+                <button className='rounded px-4 py-1 cursor-pointer'  onClick={() => changeMode("long")}>Long Break</button>
             </div>
 
-            <p className="text-center text-5xl text-white">{txtMinutos}</p>
+            <p className="text-center text-9xl text-white pb-6">{txtMinutos}</p>
             
-            <div className='mt-4 text-center'>
+            <div className='mt-4 text-center text-6xl '>
 
-              <button 
-              className='bg-white rounded p-1 px-3 mr-2 cursor-pointer min-w-[96px]' 
+              <button
+              className={` ${mode ==="pomodoro" ? 'text-[rgb(186,73,73)]' : mode === "short"  ? "text-[#38858a]"  : mode === "long"  ? "text-[#397097]" :'' } bg-white rounded p-1 rounded-lg px-3 mr-2 cursor-pointer min-w-[96px]`}
               onClick={ isRunning ? handleNotRunning : handleRunning}
               >{isRunning ? "Pause" : "Start" }</button>
                 

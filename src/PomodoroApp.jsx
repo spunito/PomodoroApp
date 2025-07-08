@@ -1,4 +1,5 @@
 import { Pomodoro } from "./components/Pomodoro"
+import { Navbar } from "./ui/components/Navbar"
 
 
 
@@ -6,8 +7,11 @@ import { Pomodoro } from "./components/Pomodoro"
 export const PomodoroApp = () => {
     
     return (
+      <>
+        <Navbar />
 
-      <Pomodoro />
-
+        <Pomodoro />
+      
+      </>
     )
 }

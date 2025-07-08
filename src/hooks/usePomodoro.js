@@ -1,5 +1,7 @@
-import { useEffect, useRef, useState } from "react";
-
+import { useContext, useEffect, useRef, useState } from "react";
+import useSound from "use-sound";
+import check from '../../public/sounds/check.mp3'
+import { PomodoroContext } from "../context/PomodoroContext";
 const durations ={
   pomodoro:1500,
   short:300,
@@ -7,10 +9,12 @@ const durations ={
 }
 
 
-export const usePomodoro = () => {
 
+export const usePomodoro = () => {
+    useContext(PomodoroContext);
     const [mode, setMode] = useState("pomodoro")
     const [timer, setTimer] = useState(durations[mode])
+    const [playSound] = useSound(check)
     const [isRunning, setIsRunning] = useState(false)
     const timerRef = useRef(null);
 
@@ -32,7 +36,20 @@ export const usePomodoro = () => {
     const handleNotRunning = () => {
         setIsRunning(false)
     }
-    
+    useEffect(() => {
+      const minutos = Math.floor(timer/60)
+      const segundos = timer % 60
+      const txtMinutos = minutos.toString().padStart(2, '0')+ ":" + segundos.toString().padStart(2, '0')
+
+      if (mode === "pomodoro") {
+        document.title = txtMinutos + " - Hora de enfocarse";
+      } else if (mode === "short" || mode === "long") {
+        document.title = txtMinutos + " - Hora de descansar";
+      }
+       
+      
+    }, [timer]);
+
     useEffect(() => {
         if(isRunning){
             timerRef.current = setInterval(() => {
@@ -53,6 +70,7 @@ export const usePomodoro = () => {
     
     useEffect(() => {
       if(timer === 0) {
+        playSound()
         clearInterval(timerRef.current);
         setIsRunning(false)
       }
@@ -66,7 +84,8 @@ export const usePomodoro = () => {
         handleReset,
         handleRunning,
         handleNotRunning,
-        changeMode
+        changeMode,
+        mode
 
 
   }
