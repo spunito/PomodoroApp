@@ -43,7 +43,7 @@ export const Pomodoro = () => {
         <div className="flex flex-col sm:flex-row justify-center gap-3 mb-6 text-white text-sm sm:text-base">
           <button
             className={`rounded px-4 py-2 cursor-pointer transition ${
-              mode === 'pomodoro' ? 'bg-[#A34444]' : 'hover:bg-[#A34444]/70'
+              mode === 'pomodoro' ? 'bg-[#A34444]' : ''
             }`}
             onClick={() => changeMode('pomodoro')}
           >
@@ -51,7 +51,7 @@ export const Pomodoro = () => {
           </button>
           <button
             className={`rounded px-4 py-2 cursor-pointer transition ${
-              mode === 'short' ? 'bg-[#3A7D7E]' : 'hover:bg-[#3A7D7E]/70'
+              mode === 'short' ? 'bg-[#3A7D7E]' : ''
             }`}
             onClick={() => changeMode('short')}
           >
@@ -59,7 +59,7 @@ export const Pomodoro = () => {
           </button>
           <button
             className={`rounded px-4 py-2 cursor-pointer transition ${
-              mode === 'long' ? 'bg-[#3B627E]' : 'hover:bg-[#3B627E]/70'
+              mode === 'long' ? 'bg-[#3B627E]' : ''
             }`}
             onClick={() => changeMode('long')}
           >
