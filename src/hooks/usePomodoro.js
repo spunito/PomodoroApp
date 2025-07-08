@@ -2,33 +2,48 @@ import { useContext, useEffect, useRef, useState } from "react";
 import useSound from "use-sound";
 import check from '../../public/sounds/check.mp3'
 import { PomodoroContext } from "../context/PomodoroContext";
-const durations ={
-  pomodoro:1500,
-  short:300,
-  long:900
-}
 
 
 
 export const usePomodoro = () => {
 
-    const {mode , setMode} = useContext(PomodoroContext);
-    const [timer, setTimer] = useState(durations[mode])
+    const {mode , setMode } = useContext(PomodoroContext);
     const [playSound] = useSound(check)
     const [isRunning, setIsRunning] = useState(false)
     const timerRef = useRef(null);
-
+    // Tiempos
+    
+    const [pomodoroTime = 25, setPomodoroTime] = useState();
+    const [shortBreakTime = 5, setShortBreakTime] = useState();
+    const [longBreakTime = 15, setLongBreakTime] = useState();
+    
+    const [timer, setTimer] = useState(()=> {
+    return (mode === "pomodoro") ? pomodoroTime * 60 
+    : (mode === "short") ? shortBreakTime *60 
+    : (mode === "long") ? longBreakTime * 60
+    : 0
+    })
 
     const changeMode = (newMode)=> {
+      
       setMode(newMode)
-      setTimer(durations[newMode])
+      if(newMode === "pomodoro"){
+        setTimer(pomodoroTime * 60)
+      }
+      if(newMode === "short"){
+        setTimer(shortBreakTime * 60)
+      }
+      if(newMode === "long"){
+        setTimer(longBreakTime * 60)
+      }
       setIsRunning(false);
 
     }
-    const handleReset = () => {
-        setTimer(1500)
-        setIsRunning(false);
-    }
+
+    // const handleReset = () => {
+    //     setTimer(1500)
+    //     setIsRunning(false);
+    // }
 
     const handleRunning = () => {
         setIsRunning(true)
@@ -73,6 +88,8 @@ export const usePomodoro = () => {
         playSound()
         clearInterval(timerRef.current);
         setIsRunning(false)
+        changeMode("short")
+        setIsRunning(true)
       }
       
     }, [timer])
@@ -81,11 +98,20 @@ export const usePomodoro = () => {
     return {
         timer,
         isRunning,
-        handleReset,
+        // handleReset,
         handleRunning,
         handleNotRunning,
         changeMode,
-        mode
+        mode,
+        pomodoroTime,
+        setPomodoroTime,
+        shortBreakTime,
+        setShortBreakTime,
+        longBreakTime,
+        setLongBreakTime
+        
+        
+        
 
 
   }

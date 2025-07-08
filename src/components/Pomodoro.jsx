@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { usePomodoro } from '../hooks/usePomodoro'
+import { PomodoroContext } from '../context/PomodoroContext'
 
 export const Pomodoro = () => {
   const {
@@ -10,7 +11,18 @@ export const Pomodoro = () => {
     handleRunning,
     handleNotRunning,
     changeMode,
+    pomodoroTime,
+    setPomodoroTime,
+    shortBreakTime,
+    setShortBreakTime,
+    longBreakTime,
+    setLongBreakTime
+        
+
   } = usePomodoro()
+
+  const { ShowSetting ,setShowSetting } = useContext(PomodoroContext)
+ 
 
   const minutos = Math.floor(timer / 60)
   const segundos = timer % 60
@@ -29,6 +41,8 @@ export const Pomodoro = () => {
           : ''
       } w-full min-h-screen flex items-center justify-center font-mono p-4`}
     >
+
+      {/* Caja Timer */}
       <div
         className={`${
           mode === 'pomodoro'
@@ -88,6 +102,38 @@ export const Pomodoro = () => {
           </button>
         </div>
       </div>
+      {
+              (ShowSetting === true) ? 
+              <div className=''>
+                <div 
+                className="absolute bg-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg p-5 shadow-lg">
+                  <h1 className='pb-3 border-b-2'>Configuraciones</h1>
+                <div className='flex-row md:col-3 pt-4 pb-4'>
+                  
+                  <p>Pomodoro</p>
+                    <input type="number"
+                    value={pomodoroTime}
+                    onChange={(e) => setPomodoroTime(e.target.value)}/>
+
+                  <p>Short Break</p>
+                    <input type="number"
+                    value={shortBreakTime}
+                    onChange={(e) => setShortBreakTime(e.target.value)}/>
+
+                  <p>Long Break</p>
+                    <input type="number" 
+    
+                    value={longBreakTime}
+                    onChange={(e) => setLongBreakTime(e.target.value)}/>
+                  </div>
+
+                  <button 
+                  className='cursor-pointer bg-red-700 p-1 rounded-lg text-center'
+                  onClick={() => setShowSetting(false)}>Salir</button>
+                </div> 
+              </div>
+                : ' '
+            }
     </div>
   )
 }
