@@ -7,10 +7,10 @@ import { usePomodoro } from '../../hooks/usePomodoro';
 export const Navbar = () => {
  
   const {mode , setShowSetting , setShowHowTo , showHowTo  } = useContext(PomodoroContext)
-  console.log(showHowTo)
   
+
   return (
-    <nav className=" fixed w-full p-4 z-font-medium text-black text z-99  ">
+    <nav className=" fixed w-full p-4 z-font-medium text-black text z-49  ">
       <div className="container mx-auto border-b-1 pb-2 border-gray-500 ">
         <div className="flex items-center justify-between  ">
           {/* Logo */}

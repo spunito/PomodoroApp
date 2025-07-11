@@ -12,7 +12,8 @@ export const Pomodoro = () => {
     mode,
     handleRunning,
     handleNotRunning,
-    changeMode,    
+    changeMode,   
+    pomodoroCount 
   } = usePomodoro()
 
   const minutos = Math.floor(timer / 60)
@@ -92,12 +93,13 @@ export const Pomodoro = () => {
           </button>
         </div>
         
-
+        {/*Opciones de pomodoro : Funcionan solo si es true showSetting  */}
         <ShowSetting />
+        {/*¿Que es Pomodoro? : Funcionan solo si es true showHowto */}
         <ShowHowTo />
         
       </div>
-          
+          <h1>#{pomodoroCount}</h1>
     </div>
   )
 }
