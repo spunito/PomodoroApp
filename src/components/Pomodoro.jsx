@@ -97,7 +97,7 @@ export const Pomodoro = () => {
         <ShowSetting />
         {/*¿Que es Pomodoro? : Funcionan solo si es true showHowto */}
         <ShowHowTo />
-         <h1 className='text-center mt-4 text-white'>Ciclo : #{pomodoroCount + 1}</h1>
+         <h1 className='text-center mt-4 text-gray-800 pt-1'>#{pomodoroCount + 1}</h1>
       </div>
       
     </div>
