@@ -86,7 +86,7 @@ export const Pomodoro = () => {
                 : mode === 'long'
                 ? 'text-[#397097]'
                 : ''
-            } bg-white rounded-lg px-6 py-2 text-lg font-bold transition hover:opacity-90 min-w-[100px]`}
+            } bg-white rounded-lg px-6 py-2 text-lg font-bold transition hover:opacity-90 min-w-[100px] cursor-pointer `}
             onClick={isRunning ? handleNotRunning : handleRunning}
           >
             {isRunning ? 'Pause' : 'Start'}
@@ -97,9 +97,9 @@ export const Pomodoro = () => {
         <ShowSetting />
         {/*¿Que es Pomodoro? : Funcionan solo si es true showHowto */}
         <ShowHowTo />
-        
+         <h1 className='text-center mt-4 text-white'>Ciclo : #{pomodoroCount + 1}</h1>
       </div>
-          <h1>#{pomodoroCount}</h1>
+      
     </div>
   )
 }
