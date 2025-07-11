@@ -27,7 +27,7 @@ export const ShowSetting = () => {
           {/* Caja del modal con las configuraciones */}
           <div className="relative z-10 bg-white rounded-lg p-5 shadow-xl max-w-sm w-full">
 
-            <h1 className="pb-3 border-b-2 text-center text-xl font-semibold">Configuraciones</h1>
+            <h1 className="pb-3 border-b-2 text-center text-xl font-semibold">Settings</h1>
 
             <div className="pt-4 pb-4 space-y-4">
               <div>
