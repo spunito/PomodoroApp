@@ -66,6 +66,21 @@ export const usePomodoro = () => {
     }, [timer]);
 
     useEffect(() => {
+      if (!isRunning) {
+        if (mode === "pomodoro") {
+          setTimer(pomodoroTime * 60);
+        } else if (mode === "short") {
+          setTimer(shortBreakTime * 60);
+        } else if (mode === "long") {
+          setTimer(longBreakTime * 60);
+        }
+      }   
+  }, [pomodoroTime, shortBreakTime, longBreakTime, mode, isRunning]);
+
+    
+    
+
+    useEffect(() => {
         if(isRunning){
             timerRef.current = setInterval(() => {
             setTimer(prev => {
