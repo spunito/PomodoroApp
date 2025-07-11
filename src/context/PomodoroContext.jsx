@@ -134,9 +134,9 @@ const [playSound] = useSound(check);
     const txtMinutos = minutos.toString().padStart(2, '0') + ":" + segundos.toString().padStart(2, '0');
 
     if (mode === "pomodoro") {
-      document.title = txtMinutos + " - Hora de enfocarse";
+      document.title = txtMinutos + " - Time to Focus";
     } else if (mode === "short" || mode === "long") {
-      document.title = txtMinutos + " - Hora de descansar";
+      document.title = txtMinutos + " - Time to take a break";
     }
   }, [timer, mode]);
 
