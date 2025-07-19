@@ -1,6 +1,6 @@
 import { createContext, useState, useRef, useEffect } from "react";
 import useSound from "use-sound";
-import check from '../../public/sounds/check.mp3';
+import check from '../assets/sounds/check.mp3';
 
 export const PomodoroContext = createContext();
 
@@ -154,7 +154,6 @@ useEffect(() => {
   localStorage.setItem('pomodoroState', JSON.stringify(stateToSave));
 }, [pomodoroTime, shortBreakTime, longBreakTime, timer, mode, pomodoroCount, isRunning]);
  
-  
   
   const changeMode = (newMode) => {
     setMode(newMode);

@@ -1,7 +1,6 @@
 import { useContext, useState } from 'react';
-import check from '../../../public/vite.svg'
 import { PomodoroContext } from '../../context/PomodoroContext';
-import { usePomodoro } from '../../hooks/usePomodoro';
+
 
 
 export const Navbar = () => {
